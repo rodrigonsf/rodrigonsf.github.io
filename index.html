@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio de Certificados | Rodrigo (Anonimizado)</title>
+    <title>Portfólio de Certificados | Rodrigo</title>
     <style>
         /* Configurações Globais e Layout Sóbrio */
         body {
@@ -44,13 +44,14 @@
 
         /* Grid de Certificados */
         .cert-grid {
-            display: grid;
-            gap: 30px;
+            display: block;
         }
 
         @media (min-width: 768px) {
             .cert-grid {
+                display: grid;
                 grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
             }
         }
 
@@ -66,17 +67,19 @@
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px; /* Margem para visualização mobile */
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s;
         }
 
-        .cert-card:hover {
-            transform: translateY(-2px);
+        @media (min-width: 768px) {
+            .cert-card {
+                margin-bottom: 0;
+            }
         }
 
-        /* Miniatura e Sobreposições de Segurança */
+        /* Miniatura do PDF */
         .pdf-preview-container {
             position: relative;
             width: 100%;
@@ -90,42 +93,32 @@
             width: 100%;
             height: 100%;
             border: none;
-            filter: blur(1px) opacity(0.8); /* Desfoque leve para ocultar detalhes */
-            pointer-events: none;
+            pointer-events: none; /* Evita que o usuário role o pdf dentro do card */
         }
 
-        /* Camada de Proteção e Marca d'Água */
+        /* Link Invisível sobre a miniatura para permitir clique */
         .preview-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.5); /* Sobreposição translúcida */
             cursor: pointer;
-            z-index: 20;
+            z-index: 10;
         }
 
-        .protection-watermark {
-            transform: rotate(-15deg);
-            color: #ef4444; /* Vermelho sóbrio */
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
-            pointer-events: none;
-        }
-
-        /* Corpo do Card */
+        /* Corpo do Card (Textos) */
         .card-body {
             padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+        }
+
+        .card-header-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
         .badge {
@@ -144,11 +137,12 @@
         }
 
         .cert-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #0f172a;
-            margin: 10px 0 0 0;
+            margin: 0;
             text-decoration: none;
+            flex-grow: 1;
         }
 
         .cert-title:hover {
@@ -156,20 +150,21 @@
         }
 
         .card-footer {
-            margin-top: auto;
-            padding-top: 20px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
         }
 
         .btn-view {
-            display: block;
+            display: inline-block;
             width: 100%;
             text-align: center;
             background-color: #f8fafc;
             color: #475569;
             border: 1px solid #e2e8f0;
-            padding: 10px 16px;
+            padding: 8px 16px;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             font-weight: 500;
             text-decoration: none;
             transition: all 0.2s;
@@ -196,18 +191,18 @@
         <!-- 1. Curso Minerva -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="20h_minerva2_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="20h_minerva2_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="20h_minerva2.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="20h_minerva2.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge">20 Horas</span></div>
-                <a href="20h_minerva2_anon.pdf" target="_blank" class="cert-title">
+                <div class="card-header-info">
+                    <span class="badge">20 Horas</span>
+                </div>
+                <a href="20h_minerva2.pdf" target="_blank" class="cert-title">
                     Curso Minerva
                 </a>
                 <div class="card-footer">
-                    <a href="20h_minerva2_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="20h_minerva2.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
@@ -215,18 +210,18 @@
         <!-- 2. ESR -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="40h_ESR_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="40h_ESR_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="40h_ESR.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="40h_ESR.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge high-hours">40 Horas</span></div>
-                <a href="40h_ESR_anon.pdf" target="_blank" class="cert-title">
+                <div class="card-header-info">
+                    <span class="badge high-hours">40 Horas</span>
+                </div>
+                <a href="40h_ESR.pdf" target="_blank" class="cert-title">
                     Curso de Capacitação ESR
                 </a>
                 <div class="card-footer">
-                    <a href="40h_ESR_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="40h_ESR.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
@@ -234,18 +229,18 @@
         <!-- 3. Tech Talks (6ª Edição) -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="Tech Talks 6ed_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="Tech Talks 6ed_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="Tech Talks 6ed.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="Tech Talks 6ed.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge">Evento</span></div>
-                <a href="Tech Talks 6ed_anon.pdf" target="_blank" class="cert-title">
+                <div class="card-header-info">
+                    <span class="badge">Evento</span>
+                </div>
+                <a href="Tech Talks 6ed.pdf" target="_blank" class="cert-title">
                     Tech Talks - 6ª Edição
                 </a>
                 <div class="card-footer">
-                    <a href="Tech Talks 6ed_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="Tech Talks 6ed.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
@@ -253,37 +248,37 @@
         <!-- 4. Tech Talks (8ª Edição) -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="Tech Talks 8ed_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="Tech Talks 8ed_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="Tech Talks 8ed.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="Tech Talks 8ed.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge">Evento</span></div>
-                <a href="Tech Talks 8ed_anon.pdf" target="_blank" class="cert-title">
+                <div class="card-header-info">
+                    <span class="badge">Evento</span>
+                </div>
+                <a href="Tech Talks 8ed.pdf" target="_blank" class="cert-title">
                     Tech Talks - 8ª Edição
                 </a>
                 <div class="card-footer">
-                    <a href="Tech Talks 8ed_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="Tech Talks 8ed.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
 
-        <!-- 5. NIC.br -->
+        <!-- 5. nicbr -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="CERTIFICADO-WSS-CREDENCIAIS-VERIFICAVEIS_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="CERTIFICADO-WSS-CREDENCIAIS-VERIFICAVEIS_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="CERTIFICADO-WSS-CREDENCIAIS-VERIFICAVEIS.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="CERTIFICADO-WSS-CREDENCIAIS-VERIFICAVEIS.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge">Certificado</span></div>
-                <a href="CERTIFICADO-WSS-CREDENCIAIS-VERIFICAVEIS_anon.pdf" target="_blank" class="cert-title">
+                <div class="card-header-info">
+                    <span class="badge">NIC.br</span>
+                </div>
+                <a href="CERTIFICADO-WSS-CREDENCIAIS-VERIFICAVEIS.pdf" target="_blank" class="cert-title">
                     WSS Credenciais Verificáveis - NIC.br
                 </a>
                 <div class="card-footer">
-                    <a href="CERTIFICADO-WSS-CREDENCIAIS-VERIFICAVEIS_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="CERTIFICADO-WSS-CREDENCIAIS-VERIFICAVEIS.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
@@ -291,18 +286,18 @@
         <!-- 6. SIEEG -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="SIEEG_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="SIEEG_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="SIEEG.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="SIEEG.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge">Certificado</span></div>
-                <a href="SIEEG_anon.pdf" target="_blank" class="cert-title">
+                <div class="card-header-info">
+                    <span class="badge">Seminário</span>
+                </div>
+                <a href="SIEEG.pdf" target="_blank" class="cert-title">
                     SIEEG
                 </a>
                 <div class="card-footer">
-                    <a href="SIEEG_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="SIEEG.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
@@ -310,18 +305,18 @@
         <!-- 7. 20h_estudo_tecnico_preliminar -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="20h_estudo_tecnico_preliminar_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="20h_estudo_tecnico_preliminar_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="20h_estudo_tecnico_preliminar.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="20h_estudo_tecnico_preliminar.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge">20 Horas</span></div>
-                <a href="20h_estudo_tecnico_preliminar_anon.pdf" target="_blank" class="cert-title">
-                    Estudo Técnico Preliminar
+                <div class="card-header-info">
+                    <span class="badge">20 Horas</span>
+                </div>
+                <a href="20h_estudo_tecnico_preliminar.pdf" target="_blank" class="cert-title">
+                    Estudo Técnico Preliminar Avançado para TIC
                 </a>
                 <div class="card-footer">
-                    <a href="20h_estudo_tecnico_preliminar_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="20h_estudo_tecnico_preliminar.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
@@ -329,18 +324,18 @@
         <!-- 8. SOFT SKILL -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="25h_soft_skills_na_transformacao_digital_turma_fev2026_certificado_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="25h_soft_skills_na_transformacao_digital_turma_fev2026_certificado_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="25h_soft_skills_na_transformacao_digital_turma_fev2026_certificado.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="25h_soft_skills_na_transformacao_digital_turma_fev2026_certificado.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge">25 Horas</span></div>
-                <a href="25h_soft_skills_na_transformacao_digital_turma_fev2026_certificado_anon.pdf" target="_blank" class="cert-title">
-                    Soft Skills na Transformação Digital
+                <div class="card-header-info">
+                    <span class="badge">25 Horas</span>
+                </div>
+                <a href="25h_soft_skills_na_transformacao_digital_turma_fev2026_certificado.pdf" target="_blank" class="cert-title">
+                    Soft Skills na Transformação Digital (Turma Fev/2026)
                 </a>
                 <div class="card-footer">
-                    <a href="25h_soft_skills_na_transformacao_digital_turma_fev2026_certificado_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="25h_soft_skills_na_transformacao_digital_turma_fev2026_certificado.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
@@ -348,18 +343,18 @@
         <!-- 9. analise_de_dados_uma -->
         <div class="cert-card">
             <div class="pdf-preview-container">
-                <a href="analise_de_dados_anon.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Protegido">
-                    <span class="protection-watermark">DADOS PROTEGIDOS</span>
-                </a>
-                <embed src="analise_de_dados_anon.pdf#toolbar=0" type="application/pdf" class="pdf-preview">
+                <a href="analise_de_dados.pdf" target="_blank" class="preview-overlay" title="Visualizar Certificado Completo"></a>
+                <embed src="analise_de_dados.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" class="pdf-preview">
             </div>
             <div class="card-body">
-                <div><span class="badge">Capacitação</span></div>
-                <a href="analise_de_dados_anon.pdf" target="_blank" class="cert-title">
+                <div class="card-header-info">
+                    <span class="badge">Capacitação</span>
+                </div>
+                <a href="analise_de_dados.pdf" target="_blank" class="cert-title">
                     Análise de Dados
                 </a>
                 <div class="card-footer">
-                    <a href="analise_de_dados_anon.pdf" target="_blank" class="btn-view">Abrir Cópia Anonimizada</a>
+                    <a href="analise_de_dados.pdf" target="_blank" class="btn-view">Abrir em Nova Aba</a>
                 </div>
             </div>
         </div>
